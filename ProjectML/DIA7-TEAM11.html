@@ -552,7 +552,7 @@
 </div>
 <div id="better-shot" class="section level3">
 <h3>Better shot:</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knn <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train=</span>train[,<span class="sc">-</span><span class="dv">18</span>], <span class="at">test=</span>test[,<span class="sc">-</span><span class="dv">18</span>], <span class="at">cl=</span>train<span class="sc">$</span>Reached_on_Time, <span class="at">k=</span><span class="dv">50</span>, <span class="at">prob =</span> <span class="cn">TRUE</span>)</span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knn <span class="ot">&lt;-</span> <span class="fu">knn</span>(<span class="at">train=</span>train[,<span class="sc">-</span><span class="dv">18</span>], <span class="at">test=</span>test[,<span class="sc">-</span><span class="dv">18</span>], <span class="at">cl=</span>train<span class="sc">$</span>Reached_on_Time, <span class="at">k=</span><span class="dv">50</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>){</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  scores[[(<span class="fu">length</span>(scores) <span class="sc">+</span> <span class="dv">1</span>)]] <span class="ot">&lt;-</span> <span class="fu">accuracy</span>(<span class="fu">knn</span>(<span class="at">train=</span>train_scaled[,<span class="sc">-</span><span class="dv">18</span>], <span class="at">test=</span>test_scaled2[,<span class="sc">-</span><span class="dv">18</span>],<span class="at">cl=</span>train_scaled<span class="sc">$</span>Reached_on_Time, <span class="at">k=</span>k),test_scaled2[,<span class="dv">18</span>])</span>
@@ -568,6 +568,25 @@
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
+<p>Our best predictions :</p>
+<pre><code>##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+## [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 0 0 0
+## [186] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+## [223] 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 1 0 0 0
+## [260] 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 1
+## [297] 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0
+## [334] 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 1 1 0 0 0 1 0 1
+## [371] 1 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+## [408] 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1 0 0 1 0 1 0 1 0 0 1 1 0 0 0 0 0
+## [445] 0 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 0 0 0 0 0 0 1 0 0 0 1 0 1 1 0 0 1 0 0 0 0
+## [482] 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 0 0
+## [519] 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
+## [556] 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## [593] 0 0 1 0 1 0 0 0 0 1 1 1 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0
+## [630] 0 0 1 1</code></pre>
 <p>To put it in a nutshell, the competition was very intense but we really enjoyed it. Our first objective was to be the first team to submit our predictions, and we succeeded in 21 minutes only!</p>
 <p>After that, we took a lot of time to explore the dataset and improve our predictions. We submitted 13 prediction files, and struggled to have better accuracy, even while trying a lot of several algorithms. It is only at the very end that we skyrocketed to the podium and finished 2nd of the competition ! Our second goal was to finish first, better luck next time.</p>
 <p>There is a small graph of our score evolution versus time:</p>
