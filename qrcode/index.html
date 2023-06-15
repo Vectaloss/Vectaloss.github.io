@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirection aleatoire</title>
+    <script>
+      // Fonction pour charger le fichier CSV
+      function loadCSV(file) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              processData(xhr.responseText);
+            } else {
+              console.error(
+                "Erreur lors du chargement du fichier CSV : " + xhr.status
+              );
+            }
+          }
+        };
+        xhr.open("GET", file, true);
+        xhr.send();
+      }
+
+      // Fonction pour traiter les données CSV
+      function processData(csvData) {
+        var lines = csvData.split("\n");
+        var links = [];
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (line !== "") {
+            var link = line.split(",")[0].trim();
+            links.push(link);
+          }
+        }
+        redirectToRandomLink(links);
+      }
+
+      // Fonction pour rediriger vers un lien aléatoire
+      function redirectToRandomLink(links) {
+        var randomIndex = Math.floor(Math.random() * links.length);
+        var randomLink = links[randomIndex];
+        window.location.href = randomLink;
+      }
+
+      // Chargement du fichier CSV au chargement de la page
+      window.addEventListener("load", function () {
+        loadCSV("liens.csv"); // Remplace 'liens.csv' par le nom de ton fichier CSV
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Redirection aleatoire</h1>
+    <p>Redirection en cours...</p>
+  </body>
+</html>
